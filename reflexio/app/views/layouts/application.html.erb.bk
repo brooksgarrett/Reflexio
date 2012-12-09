@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Reflexio</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<div id="header">
+<div class="wrapper">
+<div class="container">
+
+
+<div id="logo">
+<a id="imgLogo" title="Fortify Software | Hosted Software Security Testing — Fortify on Demand" href="/">
+<%= image_tag "fortify.png" %>
+</a>
+<div id="logobeta"><a href="#" class="linkbeta" title="Click to learn more about our new Beta">Beta</a></div>
+</div>
+<div id="nav" class="clearfix">
+
+
+<div id="login_button" class="login_button primary_button inline_button_size">
+Login
+</div>
+
+
+
+
+<ul>
+
+
+
+
+<li><a href="/freemium/faq.aspx">FAQ</a></li>
+<li><a href="/freemium/pricing.aspx">Pricing</a></li>
+
+
+<li><a href="/">Home</a></li>
+
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="banner top_border">
+<div class="wrapper">
+<div class="container">
+<%= yield %>
+</div>
+</div>
+</div>
+<div id="footer">
+<div class="wrapper">
+<div class="container clearfix">
+    
+<div class="social_icon">
+<a href="http://www.facebook.com/HPSecure" target="_blank">
+<%= image_tag "facebook_32.png" %>
+</a>
+</div>
+
+<div class="social_icon">
+<a href="http://twitter.com/HpAppSecurity" target="_blank">
+<%= image_tag "twitter_32.png" %>
+</a>
+</div>
+
+<div class="social_icon">
+<a href="http://www.linkedin.com/company/9022?trk=tyah" target="_blank">
+<img src="/images/linkedin_32.png" title="Visit our LinkedIn page" />
+</a>
+</div>
+
+<div class="social_icon">
+<a href="http://www.youtube.com/user/HPSecure" target="_blank">
+<img src="/images/youtube_32.png" title="Visit our YouTube page" />
+</a>
+</div>
+
+<div class="social_icon">
+<a href="http://www.digg.com/submit?phase=2&url=https://www.fortifymyapp.com" target="_blank">
+<img src="/images/digg_32.png" title="Digg Us" />
+</a>
+</div>
+
+<div class="social_icon">
+<a href="http://del.icio.us/post?url=https://www.fortifymyapp.com" target="_blank">
+<img src="/images/delicious_32.png" title="DEL.ICIO.US" />
+</a>
+</div>
+
+<ul>
+<li>
+<a href="http://h30499.www3.hp.com/t5/Enterprise-Security/ct-p/enterprise-security" target="_blank">Blog</a>
+</li>
+<li>
+<a href="/aboutus.aspx">About Us</a>
+</li>
+<li>
+<a href="/termsofservice.aspx">Terms Of Service</a>
+</li>
+<li>
+<a href="http://www.hpenterprisesecurity.com/vulncat/en/vulncat/index.html" target="_blank">Security Labs</a>
+</li>
+<li>
+<a href="http://www.hpenterprisesecurity.com/" target="_blank">HP</a>
+</li>
+</ul>
+
+<div style="margin-top:40px;">
+HP Fortify Support: <a href="/freemium/faq.aspx">FAQ</a>
+<br /><span style="font-size:14px;"><a href="http://www.hpenterprisesecurity.com/products/hp-fortify-software-security-center/hp-fortify-on-demand/">HP Fortify Application Security Products</a></span>
+
+</div>
+</div>
+</div>
+</div>
+
+</body>
+</html>

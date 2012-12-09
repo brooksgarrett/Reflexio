@@ -1,0 +1,27 @@
+/* Banded Tables */
+table.banded {
+    border-spacing: 0px;
+    border-collapse: collapse;
+}
+table.banded th {
+    text-align: left;
+    font-weight: normal;
+    padding: 0.1em 0.5em;
+    border-bottom: 2px solid #FFFFFF;
+    background: #DBE2F1;
+}
+table.banded td {
+    text-align: right;
+    border-bottom: 2px solid #FFFFFF;
+    padding: 0.1em 0.5em;
+    background: #DBE2F1;
+}
+
+table.banded thead th {
+    background: #687EAB;
+    color: #FFFFFF;
+    text-align: center;
+}
+table.banded th.Corner {
+    text-align: left;
+}

@@ -1,0 +1,74 @@
+body {
+width:750px;
+margin:0 auto;
+margin-top:30px;
+}
+
+
+
+/* ----- HEADER ----- */
+
+
+
+#header {
+width:750px;
+height:150px;
+/* background-color:#333333; */
+}
+
+
+
+/* ----- NAVIGATION ----- */
+
+
+
+#navigation {
+width:750px;
+height:40px;
+/* background-color:#333333; */
+margin-top:10px;
+
+}
+
+#navigation ul
+{
+list-style-type:none;
+margin:0;
+padding:0;
+}
+
+#navigation li
+{
+float:left;
+}
+#navigation a
+{
+display:block;
+width:60px;
+}
+
+
+/* ----- MAIN CONTENT ----- */
+
+
+
+#content { 
+width:750px;
+min-height:450px; /* for modern browsers */
+height:auto !important; /* for modern browsers */
+height:450px; /* for IE5.x and IE6 */#background-color:#333333;
+margin-top:10px;
+}
+
+
+
+/* ----- FOOTER ----- */
+
+
+
+#footer { 
+width:750px;
+height:100px;
+/* background-color:#333333; */
+margin-top:10px;
+}

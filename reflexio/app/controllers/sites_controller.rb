@@ -1,6 +1,7 @@
 class SitesController < ApplicationController
   # GET /sites
   # GET /sites.json
+  before_filter :authenticate_user! 
   def index
     @sites = Site.all
 

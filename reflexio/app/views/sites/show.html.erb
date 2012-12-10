@@ -9,6 +9,7 @@
   <b>Url:</b>
   <%= @site.url %>
 </p>
+<%= image_tag('/screenshots/' + @site._id.to_s + '.png') %>
 
 
 <%= link_to 'Edit', edit_site_path(@site) %> |

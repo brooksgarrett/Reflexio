@@ -3,7 +3,7 @@ class SitesController < ApplicationController
   # GET /sites.json
   before_filter :authenticate_user! 
   def index
-    @sites = Site.all
+    @sites = Site.where(:org => current_user.org )
 
     respond_to do |format|
       format.html # index.html.erb
@@ -15,6 +15,9 @@ class SitesController < ApplicationController
   # GET /sites/1.json
   def show
     @site = Site.find(params[:id])
+    unless @site.org == current_user.org
+      @site = nil
+    end
 
     respond_to do |format|
       format.html # show.html.erb
@@ -42,6 +45,7 @@ class SitesController < ApplicationController
   # POST /sites.json
   def create
     @site = Site.new(params[:site])
+    @site.state = 'Pending'
 
     respond_to do |format|
       if @site.save

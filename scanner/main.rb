@@ -5,12 +5,11 @@
 require 'selenium-webdriver'
 require 'net/http'
 require 'uri'
-require 'mongo_mapper'
-require 'mongo'
+require 'mongoid'
+require './site.rb'
 
-include MongoMapper::Document
 
-def takeScreenShot(url)
+def takeScreenShot(id, url)
 	width = 1024
 	height = 728
 	driver = Selenium::WebDriver.for :firefox
@@ -19,7 +18,7 @@ def takeScreenShot(url)
 	  window.resizeTo(#{width}, #{height});
 	}
 
-	thumbnail = driver.screenshot_as(:png)
+	thumbnail = driver.save_screenshot('../reflexio/public/screenshots/' + id + '.png')
 	driver.quit
 	return thumbnail
 end
@@ -32,15 +31,22 @@ def getResponseCode(url)
 	return http.request(request).code
 end
 
-def getNextSite(db)
-	report = Report.where(state => 'Pending').first
-	return report
+def getNextSite()
+	site = Site.where(state: 'Pending').first
+	return site 
 end
 
-def getConnection
-	MongoMapper.connection = Mongo::Connection.new
-	MongoMapper.database = 'reflexio'
+Mongoid.load!('../reflexio/config/mongoid.yml', :development)
+
+while (true)
+   site = getNextSite()
+   unless site.nil? 
+       site.response_code = getResponseCode(site.url)
+       puts site.response_code
+       unless site.response_code == '200'
+           site.screenshot = takeScreenShot(site._id, site.url)
+       end
+       site.state = 'Idle'
+       site.save
+   end
 end
-
-
-

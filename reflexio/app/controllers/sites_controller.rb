@@ -15,9 +15,6 @@ class SitesController < ApplicationController
   # GET /sites/1.json
   def show
     @site = Site.find(params[:id])
-    unless @site.org == current_user.org
-      @site = nil
-    end
 
     respond_to do |format|
       format.html # show.html.erb
@@ -29,7 +26,6 @@ class SitesController < ApplicationController
   # GET /sites/new.json
   def new
     @site = Site.new
-
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @site }
@@ -46,7 +42,9 @@ class SitesController < ApplicationController
   def create
     @site = Site.new(params[:site])
     @site.state = 'Pending'
-
+    @site.status = 'Unknown'
+    @site.timestamp = Time.now()
+    @site.org = current_user.org
     respond_to do |format|
       if @site.save
         format.html { redirect_to @site, notice: 'Site was successfully created.' }
@@ -62,6 +60,11 @@ class SitesController < ApplicationController
   # PUT /sites/1.json
   def update
     @site = Site.find(params[:id])
+    unless @site.nil?
+      @site.state='Pending'
+      @site.status = 'Unknown'
+      @site.timestamp = Time.now()
+    end
 
     respond_to do |format|
       if @site.update_attributes(params[:site])

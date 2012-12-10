@@ -41,12 +41,19 @@ Mongoid.load!('../reflexio/config/mongoid.yml', :development)
 while (true)
    site = getNextSite()
    unless site.nil? 
-       site.response_code = getResponseCode(site.url)
-       puts site.response_code
-       unless site.response_code == '200'
-           site.screenshot = takeScreenShot(site._id, site.url)
+       start = Time.now()
+       begin
+           site.response_code = getResponseCode(site.url)
+           site.response_time = Time.now() - start
+           unless site.response_code == '200'
+               site.screenshot = takeScreenShot(site._id, site.url)
+               site.status = 'Success'
+           end
+       rescue SocketError
+           site.status = 'Failed'
        end
        site.state = 'Idle'
+       site.timestamp = Time.now
        site.save
    end
 end

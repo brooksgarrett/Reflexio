@@ -1,6 +1,4 @@
 Reflexio::Application.routes.draw do
-  devise_for :admins
-
   resources :sites
 
 

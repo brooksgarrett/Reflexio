@@ -9,5 +9,6 @@ class Site
   field :result, type: String
   field :screenshot, type: String
   field :response_code, type: Integer
+  field :response_time, type: Float
 
 end

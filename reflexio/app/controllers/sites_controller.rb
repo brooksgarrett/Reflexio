@@ -3,7 +3,7 @@ class SitesController < ApplicationController
   # GET /sites.json
   before_filter :authenticate_user! 
   def index
-    @sites = Site.where(:org => current_user.org )
+    @sites = restrictSites
 
     respond_to do |format|
       format.html # index.html.erb
@@ -14,7 +14,7 @@ class SitesController < ApplicationController
   # GET /sites/1
   # GET /sites/1.json
   def show
-    @site = Site.find(params[:id])
+    @site = restrictSites.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -34,7 +34,7 @@ class SitesController < ApplicationController
 
   # GET /sites/1/edit
   def edit
-    @site = Site.find(params[:id])
+    @site = restrictSites.find(params[:id])
   end
 
   # POST /sites
@@ -59,7 +59,7 @@ class SitesController < ApplicationController
   # PUT /sites/1
   # PUT /sites/1.json
   def update
-    @site = Site.find(params[:id])
+    @site = restrictSites.find(params[:id])
     unless @site.nil?
       @site.state='Pending'
       @site.status = 'Unknown'
@@ -80,12 +80,21 @@ class SitesController < ApplicationController
   # DELETE /sites/1
   # DELETE /sites/1.json
   def destroy
-    @site = Site.find(params[:id])
+    @site = restrictSites.find(params[:id])
     @site.destroy
 
     respond_to do |format|
       format.html { redirect_to sites_url }
       format.json { head :no_content }
+    end
+  end
+
+  # Helper method to restrict non-admin users
+  def restrictSites
+    if current_user.admin?
+      return Site.all
+    else
+      return Site.where(:org => current_user.org )
     end
   end
 end

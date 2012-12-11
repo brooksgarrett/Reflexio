@@ -6,7 +6,7 @@ class User
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  attr_accessible :email, :org
+  attr_accessible :email, :org, :admin
 
   ## Database authenticatable
   field :email,              :type => String, :default => ""
@@ -46,4 +46,10 @@ class User
   # Org
   field :org, :type => String
 
+  # Administrators can manage all sites and manage users
+  field :admin, :type => Boolean, :default => false
+
+  def isadmin?
+    return :admin
+  end
 end

@@ -6,8 +6,6 @@ class User
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  attr_accessible :email, :org, :admin, :approved
-
   ## Database authenticatable
   field :email,              :type => String, :default => ""
   field :encrypted_password, :type => String, :default => ""
@@ -29,6 +27,27 @@ class User
   field :current_sign_in_ip, :type => String
   field :last_sign_in_ip,    :type => String
 
+  # Org definition used for segmentation
+  field :org, :type => String, :default => 'Public'
+
+  # Admin designator, grants access to all Orgs and User mgmt
+  field :admin, :type => Boolean, :default => false
+
+  # Approvable
+  field :approved, :type => Boolean, :default => false
+  def active_for_authentication?
+    super && approved?
+  end
+
+  def inactive_message
+    if !approved?
+      :not_approved
+    else
+      super
+    end
+  end
+
+  
   ## Confirmable
   # field :confirmation_token,   :type => String
   # field :confirmed_at,         :type => Time
@@ -42,25 +61,4 @@ class User
 
   ## Token authenticatable
   # field :authentication_token, :type => String
-
-  # Approvable
-  field :approved, :type => Boolean, :default => false
-
-  # Org
-  field :org, :type => String
-
-  # Administrators can manage all sites and manage users
-  field :admin, :type => Boolean, :default => false
-
-  def active_for_authentication?
-    super && approved?
-  end
-
-  def inactive_message
-    if !approved?
-      :not_approved
-    else
-      super
-    end
-  end
 end

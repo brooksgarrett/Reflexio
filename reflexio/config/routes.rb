@@ -1,10 +1,8 @@
 Reflexio::Application.routes.draw do
-  resources :sites
-
-
   devise_for :users
 
-  resources :creates
+  resources :sites
+
 
 
   get "home/index"

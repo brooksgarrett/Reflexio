@@ -9,7 +9,11 @@
     <th></th>
   </tr>
 
-<% @sites.each do |site| %>
+  <% @sites.each do |site| %>
+    <% if cannot? :show, site 
+        next
+        end
+      %>
   <tr>
     <td><%= site.org %></td>
     <td><%= site.url %></td>

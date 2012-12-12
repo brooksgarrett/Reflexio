@@ -47,7 +47,6 @@ class User
     end
   end
 
-  
   ## Confirmable
   # field :confirmation_token,   :type => String
   # field :confirmed_at,         :type => Time

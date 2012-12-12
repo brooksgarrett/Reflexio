@@ -1,10 +1,12 @@
 class SitesController < ApplicationController
+  # This controller handles all site and report management.
+  # All @sites and @site objects are loaded via cancan in the load_and_authorize method.
+  
   # GET /sites
   # GET /sites.json
   before_filter :authenticate_user! 
   load_and_authorize_resource
   def index
-    @sites = Site.all
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @sites }
@@ -14,8 +16,6 @@ class SitesController < ApplicationController
   # GET /sites/1
   # GET /sites/1.json
   def show
-    @site = Site.find(params[:id])
-
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @site }
@@ -25,7 +25,6 @@ class SitesController < ApplicationController
   # GET /sites/new
   # GET /sites/new.json
   def new
-    @site = Site.new
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @site }
@@ -34,13 +33,11 @@ class SitesController < ApplicationController
 
   # GET /sites/1/edit
   def edit
-    @site = Site.find(params[:id])
   end
 
   # POST /sites
   # POST /sites.json
   def create
-    @site = Site.new(params[:site])
     @site.state = 'Pending'
     @site.status = 'Unknown'
     @site.timestamp = Time.now()
@@ -59,7 +56,6 @@ class SitesController < ApplicationController
   # PUT /sites/1
   # PUT /sites/1.json
   def update
-    @site = Site.find(params[:id])
     unless @site.nil?
       @site.state='Pending'
       @site.status = 'Unknown'
@@ -80,7 +76,6 @@ class SitesController < ApplicationController
   # DELETE /sites/1
   # DELETE /sites/1.json
   def destroy
-    @site = Site.find(params[:id])
     @site.destroy
 
     respond_to do |format|

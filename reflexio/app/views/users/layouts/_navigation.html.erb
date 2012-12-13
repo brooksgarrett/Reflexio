@@ -1,0 +1,9 @@
+        <ul>
+          <li><%= link_to 'Site Listing', sites_path %></li>
+          <li><%= link_to 'New Site', new_site_path %></li>
+          <% if (not current_user.nil?) && current_user.admin? %>
+          <li><%= link_to 'Manage Users', users_path %></li>
+          <% end %>
+          <li><%= link_to('Logout', destroy_user_session_path, :method => :delete) %> </li>
+        </ul>
+

@@ -14,9 +14,9 @@
               <tr class=<%= cycle("prettygrid-row", "prettygrid-alt") %>>
                 <td align="center"><%= site.org %></td>
                 <td align="left"><%= site.url %></td>
-                <td align="left"><%= site.timestamp %></td>
+                <td align="left"><%= site.last_updated %></td>
                 <td align="center">
-                  <% if site.status != 'Success' %><span class="rejected"><%= site.status %></span><% else %><%= site.status %><% end %></td>
+                  <span class="rejected"><%= site.result %></span>
                 </td>
                 <td align="center" style="white-space:nowrap;">
                   <%= link_to 'Show', site %>

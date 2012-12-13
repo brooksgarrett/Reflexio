@@ -1,4 +1,10 @@
-<h1>Editing site</h1>
+<% content_for :page_title do %>Edit User<% end %>
+		  <% content_for :main_heading do %>
+          <h1>Admin</h1>
+		  <% end %>
+		  <% content_for :sub_heading do %>
+            <h3>Editing <%= @user.email %></h3>
+		  <% end %>
 
 <%= render 'form' %>
 

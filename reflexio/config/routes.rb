@@ -2,9 +2,7 @@ Reflexio::Application.routes.draw do
 
   resources :sites
   devise_for :users
-  scope "/admin" do
-      resources :users
-  end
+  resources :users, :path => '/admin/users'
 
 
 

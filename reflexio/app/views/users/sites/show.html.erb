@@ -22,25 +22,33 @@
                 <td align="left"><%= @site.url %></td>
               </tr>
               <tr class="prettygrid-row">
-                <td align="left">Timestamp</td>
-                <td align="left"><%= @site.timestamp %></td>
+                <td align="left">Last Updated</td>
+                <td align="left"><%= @site.last_updated %></td>
 			  </tr>
 			  <tr class="prettygrid-alt">
                 <td align="left">Current State</td>
                 <td align="left"><%= @site.state %></td>
               </tr>
-			  <tr class="prettygrid-row">
-                <td align="left">Response Time</td>
-                <td align="left"><%= @site.response_time %> seconds</td>
+              <tr class="prettygrid-row">
+                <td align="left">Timestamp</td>
+                <td align="left"><%= @site.timestamp %></td>
 			  </tr>
 			  <tr class="prettygrid-alt">
                 <td align="left">Status</td>
                 <td align="left"><%= @site.status %></td>
               </tr>
-			  <tr class="prettygrid-row">
+              <tr class="prettygrid-row">
+                <td align="left">Result</td>
+                <td align="left"><%= @site.result %></td>
+			  </tr>
+			  <tr class="prettygrid-alt">
                 <td align="left">Response Code</td>
                 <td align="left"><%= @site.response_code %></td>
               </tr>
+			  <tr class="prettygrid-row">
+                <td align="left">Response Time</td>
+                <td align="left"><%= @site.response_time %> seconds</td>
+			  </tr>
             </table>
 			<br /><hr />
 			<h3>Screenshot</h3>			

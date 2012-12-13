@@ -1,0 +1,26 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Url:</b>
+  <%= @site.url %>
+</p>
+<p>
+  <b>Last Attempt:</b>
+  <%= @site.status %> 
+</p>
+<% if @site.status == 'Success' %>
+<p>
+  <b>Response Code:</b>
+  <%= @site.response_code %>
+</p>
+<p>
+  <b>Latency:</b>
+  <%= @site.response_time %> seconds
+</p>
+<% end %>
+<%= link_to 'Back', sites_path %> | 
+<%= link_to 'Edit', edit_site_path(@site) %>
+
+<% if @site.status == 'Success' %>
+<%= image_tag('/screenshots/' + @site._id.to_s + '.png') %>
+<% end %>

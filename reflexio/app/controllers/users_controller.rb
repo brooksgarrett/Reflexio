@@ -1,66 +1,71 @@
 class UsersController < ApplicationController
-  # GET /sites
-  # GET /sites.json
+  # GET /users
+  # GET /users.json
   before_filter :authenticate_user! 
-  before_filter :validate_admin
-  before_filter :find_user, :only => [:show, :edit, :update, :destroy]
+  load_and_authorize_resource 
   def index
-    @users = User.all
-
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @sites }
+      format.json { render json: @users }
     end
   end
 
-  # GET /sites/1
-  # GET /sites/1.json
+  # GET /users/1
+  # GET /users/1.json
   def show
-
+    @user = User.find(params[:id])
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @user }
     end
   end
 
-  # GET /sites/new
-  # GET /sites/new.json
+  # GET /users/new
+  # GET /users/new.json
   def new
-    @site = Site.new
+    @user = User.new()
     respond_to do |format|
       format.html # new.html.erb
-      format.json { render json: @site }
+      format.json { render json: @user }
     end
   end
 
-  # GET /sites/1/edit
+  # GET /users/1/edit
   def edit
+    @user = User.find(params[:id])
+    respond_to do |format|
+      format.html # edit.html.erb
+      format.json { render json: @user }
+    end
+
   end
 
-  # PUT /sites/1
-  # PUT /sites/1.json
+  # PUT /users/1
+  # PUT /users/1.json
   def update
+    @user = User.find(params[:id])
     if params[:user][:password].blank?
       params[:user].delete(:password)
       params[:user].delete(:password_confirmation)
     end
-    #@user.approved =  params[:user][:approved] == '1'
-    #@user.admin =  params[:user][:admin] == '1'
+    @user.approved =  params[:user][:approved] == '1'
+    @user.admin =  params[:user][:admin] == '1'
 
     respond_to do |format|
       if @user.update_attributes(params[:user])
-        format.html { redirect_to @user, notice: 'Site was successfully updated.' }
+        format.html { redirect_to @user, notice: 'User was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
-        format.json { render json: @site.errors, status: :unprocessable_entity }
+        format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
   end
 
-  # DELETE /sites/1
-  # DELETE /sites/1.json
+  # DELETE /users/1
+  # DELETE /users/1.json
   def destroy
+    @user = User.find(params[:id])
     @user.destroy
 
     respond_to do |format|
@@ -68,16 +73,4 @@ class UsersController < ApplicationController
       format.json { head :no_content }
     end
   end
-
-  # Helper method to restrict non-admin users
-  protected
-    def validate_admin
-      if not current_user.admin?
-        render :status => :forbidden, :text => 'You are not authorized to access this area.'
-      end
-    end
-  protected
-    def find_user
-      @user = User.find(params[:id])
-    end
 end

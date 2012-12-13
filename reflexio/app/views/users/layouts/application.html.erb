@@ -16,6 +16,9 @@
           </a>
         </div>
       <div id="nav" class="clearfix">
+        <div class="inline_button_size primary_button">
+          <a href="/freemium/pricing.aspx">Upgrade</a>
+        </div>
         <% unless current_user.nil? %>
         <%= render "layouts/navigation" %>
         <% end %>
@@ -33,6 +36,7 @@
   <%= yield :main_heading%>
           <div>
           <div style="margin-bottom:30px;">
+            <input name="button1" type="button" id="cmdNewTest" class="standard_button_size critical_button" value="Run New Test" style="float:right;" />
 			<%= yield :sub_heading %>
 			          </div>
           <div>

@@ -1,13 +1,41 @@
-<p id="notice"><%= notice %></p>
+<% content_for :page_title do %>Show User<% end %>
+		  <% content_for :main_heading do %>
+          <h1>Admin</h1>
+		  <% end %>
+		  <% content_for :sub_heading do %>
+            <h3>User Report</h3>
+		  <% end %>
 
-<p>
-  <b>Url:</b>
-  <%= @user.email %>
-</p>
-<p>
-  <b>Last Attempt:</b>
-  <%= @user.org %> 
-</p>
-<%= link_to 'Back', users_path %> | 
-<%= link_to 'Edit', edit_user_path(@user) %>
-
+            <table class="prettygrid" cellspacing="0" cellpadding="0" rules="all" border="1" id="MainContent_gvResults" style="width:100%;border-collapse:collapse;">
+              <tr class="prettygrid-header">
+                <th align="center" scope="col">Parameter</th><th align="center" scope="col">Value</th>
+              </tr>
+              <tr class="prettygrid-row">
+                <td align="left">EMail</td>
+                <td align="left"><%= @user.email %></td>
+			  </tr>
+			  <tr class="prettygrid-alt">
+                <td align="left">Organization</td>
+                <td align="left"><%= @user.org %></td>
+              </tr>
+              <tr class="prettygrid-row">
+                <td align="left">Approved</td>
+                <td align="left"><%= @user.approved %></td>
+			  </tr>
+			  <tr class="prettygrid-alt">
+                <td align="left">Current IP</td>
+                <td align="left"><%= @user.current_sign_in_ip %></td>
+              </tr>
+			  <tr class="prettygrid-row">
+                <td align="left">Last IP</td>
+                <td align="left"><%= @user.last_sign_in_ip %></td>
+			  </tr>
+			  <tr class="prettygrid-alt">
+                <td align="left">Last Seen</td>
+                <td align="left"><%= @user.last_sign_in_at %></td>
+              </tr>
+			  <tr class="prettygrid-row">
+                <td align="left">Times Signed In</td>
+                <td align="left"><%= @user.sign_in_count %></td>
+			  </tr>
+            </table>

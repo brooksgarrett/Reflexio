@@ -7,7 +7,6 @@ class Ability
       can :manage, Site
     end
     can :manage, Site, :org => user.org
-    can :manage, :all
     # Define abilities for the passed in user here. For example:
     #
     #   user ||= User.new # guest user (not logged in)

@@ -12,10 +12,9 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :url %><br />
-    <%= f.text_field :url, :class => 'modal_input' %>
+    <%= f.text_field :url, :class => 'modal_input', :placeholder => 'URL' %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit 'Submit', :class => 'critical_button standard_button_size loginButton' %>
   </div>
 <% end %>

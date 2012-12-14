@@ -4,7 +4,9 @@
 		  <% end %>
 		  <% content_for :sub_heading do %>
             <h3>Details</h3>
+            <%= link_to site_path(@site), :method => :put do %>
 			<input name="button1" type="button" id="cmdNewTest" class="standard_button_size critical_button" value="Run New Test" style="float:right;" />
+            <% end %>
 		  <% end %>
 <%= link_to 'Back', sites_path %> | 
 <%= link_to 'Edit', edit_site_path(@site) %>

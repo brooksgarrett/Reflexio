@@ -38,8 +38,6 @@ class SitesController < ApplicationController
   # POST /sites
   # POST /sites.json
   def create
-    @site.state = 'Pending'
-    @site.status = 'Unknown'
     @site.timestamp = Time.now()
     @site.org = current_user.org
     respond_to do |format|
@@ -58,8 +56,10 @@ class SitesController < ApplicationController
   def update
     unless @site.nil?
       @site.state='Pending'
-      @site.status = 'Unknown'
+      @site.status = 'N/A'
       @site.timestamp = Time.now()
+      @site.response_code = 0
+      @site.response_time = 0
     end
 
     respond_to do |format|

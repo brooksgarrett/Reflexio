@@ -12,12 +12,10 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :email %><br />
-    <%= f.text_field :email, :class => 'modal_input' %>
+    <%= f.text_field :email, :class => 'modal_input', :placeholder => 'EMail Address' %>
   </div>
   <div class="field">
-    <%= f.label :org %><br />
-    <%= f.text_field :org, :class => 'modal_input' %>
+    <%= f.text_field :org, :class => 'modal_input', :placeholder => 'Organization' %>
   </div>
   <div class="field">
     <%= f.label :approved %><br />
@@ -28,6 +26,6 @@
     <%= f.check_box :admin %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit 'Submit', :class => 'critical_button standard_button_size loginButton' %>
   </div>
 <% end %>
